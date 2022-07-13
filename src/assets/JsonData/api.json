@@ -18,7 +18,8 @@
     {
         "pages": "Khóa học",
         "api": {
-            "get-list_course": "https://programming-course-server.herokuapp.com/v1/course"
+            "get-list_course": "https://programming-course-server.herokuapp.com/v1/course",
+            "add-course": "https://programming-course-server.herokuapp.com/v1/course/add"
         }
     },
     {
@@ -27,6 +28,12 @@
             "post-sencorship-approve": "http://127.0.0.1:8000/api/admin/approveCourse",
             "post-sencorship-refuse" : "http://127.0.0.1:8000/api/admin/refuseCourse"
         }
+    },
+    {
+      "pages": "Category",
+      "api": {
+        "get-all-categories": "https://programming-course-server.herokuapp.com/v1/category"
+      }
     },
     {
         "pages": "Thêm khóa học",
