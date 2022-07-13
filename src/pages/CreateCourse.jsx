@@ -17,6 +17,7 @@ import {
   Typography,
 } from "@mui/material";
 import Swal from "sweetalert2";
+import { useHistory } from "react-router-dom";
 
 const CreateCourse = () => {
   const [loading, setLoading] = useState(true);
@@ -70,6 +71,7 @@ const Content = (props) => {
       questions: [],
     },
   });
+  const history = useHistory();
 
   const addLesson = () => {
     const tmpLessons = [...course.lessons];
@@ -143,20 +145,33 @@ const Content = (props) => {
 
   const submit = async () => {
     console.log(JSON.stringify(course));
-    const res = await axios.post(
-      api.find((e) => e.pages === "Khóa học").api["add-course"],
-      course,
-      axiosConfig
-    );
-
-    if (res.data.code === 200)
-      Swal.fire("Done", "Course has been uploaded successfully", "success");
-    else
+    try {
+      const res = await axios.post(
+        api.find((e) => e.pages === "Khóa học").api["add-course"],
+        course,
+        axiosConfig
+      );
+  
+      if (res.data.code === 200)
+        Swal.fire(
+          "Done",
+          "Course has been uploaded successfully",
+          "success"
+        ).then(() => history.push("/"));
+      else
+        Swal.fire(
+          "Error",
+          "Something happened, check infomations and try again, glhf!",
+          "error"
+        );
+    } catch (error) {
       Swal.fire(
         "Error",
         "Something happened, check infomations and try again, glhf!",
         "error"
       );
+    }
+    
   };
 
   return (
