@@ -24,7 +24,6 @@ const modalStyle = {
 export default function CourseCard(props) {
   const [open, setOpen] = React.useState(false);
   const course = props.course;
-  console.log(course);
   return (
     <>
       <Modal
@@ -48,7 +47,7 @@ export default function CourseCard(props) {
                 {course.name}
               </Typography>
               <Typography align="center" variant="h6" component="h2">
-                {course.description}
+                {course.description.substring(0, 80) + "..."}
               </Typography>
             </Grid>
             <Grid container item xs={7} pr={3}>
@@ -70,7 +69,7 @@ export default function CourseCard(props) {
           </Grid>
         </Paper>
       </Modal>
-      <Card sx={{ maxWidth: 345 }}>
+      <Card sx={{ maxWidth: 345, height: "100%" }}>
         <CardMedia
           component="img"
           height="140"

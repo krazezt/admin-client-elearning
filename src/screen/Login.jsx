@@ -21,7 +21,7 @@ export const Login = () => {
         history.push("/");
       }
     });
-  }, []);
+  }, [history]);
 
   const login = () => {
     Axios.post(

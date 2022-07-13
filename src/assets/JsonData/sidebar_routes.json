@@ -5,7 +5,7 @@
         "icon": "bx bx-category-alt"
     },
     {
-        "display_name": "Người dùng",
+        "display_name": "Add Course",
         "route": "/users",
         "icon": "bx bx-user-pin"
     },

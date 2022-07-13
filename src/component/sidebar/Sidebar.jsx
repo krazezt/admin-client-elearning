@@ -1,7 +1,6 @@
 import React from "react";
 
 import "./Sidebar.css";
-import logo from "../../assets/images/logo.png";
 import sidebar_items from "../../assets/JsonData/sidebar_routes.json";
 import { Link } from "react-router-dom";
 import "../../assets/css/index.css";
@@ -27,7 +26,7 @@ export const Sidebar = (props) => {
   return (
     <div className="sidebar">
       <div className="sidebar_logo">
-        <img src={logo} alt="company logo" />
+        <img src="https://logos-download.com/wp-content/uploads/2016/09/React_logo_wordmark.png" alt="company logo" />
       </div>
       {sidebar_items.map((item, index) => (
         <Link to={item.route} key={index}>
