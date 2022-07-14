@@ -151,7 +151,7 @@ const Content = (props) => {
         course,
         axiosConfig
       );
-  
+
       if (res.data.code === 200)
         Swal.fire(
           "Done",
@@ -171,7 +171,6 @@ const Content = (props) => {
         "error"
       );
     }
-    
   };
 
   return (
