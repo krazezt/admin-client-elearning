@@ -86,9 +86,9 @@ export default function CourseCard(props) {
       <Card sx={{ maxWidth: 345, height: "100%" }}>
         <CardMedia
           component="img"
-          height="140"
+          height="200"
           image={course.image}
-          alt="green iguana"
+          alt="img"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
