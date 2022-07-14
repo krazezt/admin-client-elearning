@@ -34,7 +34,10 @@
   {
     "pages": "Category",
     "api": {
-      "get-all-categories": "https://programming-course-server.herokuapp.com/v1/category"
+      "get-all-categories": "https://programming-course-server.herokuapp.com/v1/category",
+      "edit-category": "https://programming-course-server.herokuapp.com/v1/category/",
+      "delete-category": "https://programming-course-server.herokuapp.com/v1/category/",
+      "add-category": "https://programming-course-server.herokuapp.com/v1/category/add"
     }
   },
   {

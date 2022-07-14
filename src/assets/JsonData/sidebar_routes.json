@@ -6,16 +6,16 @@
     },
     {
         "display_name": "Add Course",
-        "route": "/users",
+        "route": "/create-course",
         "icon": "bx bx-user-pin"
     },
     {
         "display_name": "Manage Category",
-        "route": "/censorship",
+        "route": "/category-management",
         "icon": "bx bx-package"
     },
     {
-        "display_name": "Thống kê",
+        "display_name": "Analystics",
         "route": "/analytics",
         "icon": "bx bx-bar-chart-alt"
     }

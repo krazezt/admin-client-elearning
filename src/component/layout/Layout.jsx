@@ -16,10 +16,9 @@ export const Layout = () => {
   const dispatch = useDispatch();
   const [status, setStatus] = useState(0);
   useEffect(() => {
-    const themeClass = localStorage.getItem("themeMode", "theme-mode-dark");
-    const colorClass = localStorage.getItem("colorMode", "theme-color-blue");
+    const colorClass = localStorage.getItem("colorMode");
 
-    dispatch(ThemeActions.setMode(themeClass));
+    dispatch(ThemeActions.setMode("theme-mode-light"));
     dispatch(ThemeActions.setColor(colorClass));
   }, [dispatch]);
 
@@ -29,6 +28,7 @@ export const Layout = () => {
         history.push("/login");
       } else setStatus(1);
     });
+    // eslint-disable-next-line
   }, []);
   if (status !== 0)
     return (

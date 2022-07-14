@@ -28,7 +28,7 @@ const EditCourse = () => {
   useEffect(() => {
     let axiosConfig = {
       headers: {
-        "Content-Type": "application/json;charset-UTF-8",
+        "Content-Type": "application/json",
         Accept: "application/json",
         Authorization: `Bearer ${localStorage.getItem("token-admin")}`,
       },

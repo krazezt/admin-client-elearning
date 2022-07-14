@@ -1,6 +1,6 @@
 import React from 'react'
 import { Dropdown } from '../dropdown/Dropdown'
-import { Link, useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import './TopNav.css'
 
@@ -29,7 +29,6 @@ const renderUserToggle = (user) => (
 
 
 export const TopNav = () => {
-    const history = useHistory()
 
     const logout = ()=>{
         localStorage.removeItem('token-admin')

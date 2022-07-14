@@ -93,8 +93,8 @@ export const ThemeMenu = () => {
     }
 
     useEffect(() => {
-        const themeClass = mode_settings.find(e => e.class = localStorage.getItem('themeMode', 'theme-mode-dark'))
-        const colorClass = color_settings.find(e => e.class = localStorage.getItem('colorMode', 'theme-color-blue'))
+        const themeClass = mode_settings.find(e => e.class = localStorage.getItem('themeMode'))
+        const colorClass = color_settings.find(e => e.class = localStorage.getItem('colorMode'))
 
         if (themeClass !== undefined) setcurrMode(themeClass.id);
         if (colorClass !== undefined) setcurrColor(colorClass.id);
