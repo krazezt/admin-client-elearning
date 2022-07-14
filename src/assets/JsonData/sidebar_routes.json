@@ -10,7 +10,7 @@
         "icon": "bx bx-user-pin"
     },
     {
-        "display_name": "Phê duyệt",
+        "display_name": "Manage Category",
         "route": "/censorship",
         "icon": "bx bx-package"
     },
