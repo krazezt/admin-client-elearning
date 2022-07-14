@@ -9,7 +9,10 @@ import {
   Modal,
   Paper,
   Grid,
+  IconButton,
 } from "@mui/material";
+import BorderColorRoundedIcon from "@mui/icons-material/BorderColorRounded";
+import { useHistory } from "react-router-dom";
 
 const modalStyle = {
   position: "absolute",
@@ -24,6 +27,8 @@ const modalStyle = {
 export default function CourseCard(props) {
   const [open, setOpen] = React.useState(false);
   const course = props.course;
+  const history = useHistory();
+
   return (
     <>
       <Modal
@@ -33,6 +38,14 @@ export default function CourseCard(props) {
         }}
       >
         <Paper style={modalStyle}>
+          <IconButton
+            color="primary"
+            component="label"
+            style={{ position: "absolute", right: "15px", top: "5px" }}
+            onClick={() => history.push("/edit-course/" + course.id)}
+          >
+            <BorderColorRoundedIcon fontSize="large" />
+          </IconButton>
           <Grid container spacing={3} pt={3} pl={3}>
             <Grid item xs={5} pr={3} height="100%">
               <img
@@ -41,6 +54,7 @@ export default function CourseCard(props) {
                   width: "100%",
                   borderRadius: "10px",
                 }}
+                alt="img"
                 src={course.image}
               />
               <Typography align="center" variant="h4" component="h2">
