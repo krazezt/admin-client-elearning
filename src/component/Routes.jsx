@@ -11,10 +11,10 @@ export const Routes = () => {
     return (
         <Switch>
             <Route path="/" exact component={Dashboard} />
-            <Route path="/users" component={CreateCourse} />
-            <Route path="/censorship" component={CategoryManagement} />
-            <Route path="/analytics" component={Analytics} />
+            <Route path="/create-course" component={CreateCourse} />
+            <Route path="/category-management" component={CategoryManagement} />
             <Route path={`/edit-course/:id`} component={EditCourse} />
+            <Route path="/analytics" component={Analytics} />
             <NotFoud/>
         </Switch>
     )

@@ -8,29 +8,31 @@ import CourseCard from "../component/cards/CourseCard";
 const Dashboard = () => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
-  let axiosConfig = {
-    headers: {
-      "Content-Type": "application/json;charset-UTF-8",
-      Accept: "application/json",
-      Authorization: `Bearer ${localStorage.getItem("token-admin")}`,
-    },
-    params: {
-      limit: 10,
-      page: 1,
-    },
-  };
+
   useEffect(() => {
+    let axiosConfig = {
+      headers: {
+        "Content-Type": "application/json;charset-UTF-8",
+        Accept: "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token-admin")}`,
+      },
+      params: {
+        limit: 10,
+        page: 1,
+      },
+    };
+
+    const getData = async () => {
+      const res = await axios.get(
+        api.find((e) => e.pages === "Khóa học").api["get-list_course"],
+        axiosConfig
+      );
+      setData(res.data);
+      setLoading(false);
+    };
+
     getData();
   }, []);
-
-  const getData = async () => {
-    const res = await axios.get(
-      api.find((e) => e.pages === "Khóa học").api["get-list_course"],
-      axiosConfig
-    );
-    setData(res.data)
-    setLoading(false);
-  };
 
   return (
     <div>
@@ -53,7 +55,7 @@ const Content = (props) => {
     <Grid container spacing={5}>
       {props.courses.map((item, index) => (
         <Grid item xs={3} key={index}>
-          <CourseCard course={item}/>
+          <CourseCard course={item} />
         </Grid>
       ))}
     </Grid>
