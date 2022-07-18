@@ -134,6 +134,27 @@ const Content = (props) => {
     setCourse(tmpCourse);
   };
 
+  const handleChangeFile = async (event, index) => {
+    const tmpCourse = { ...course };
+    try {
+      const file = event.target.files[0];
+      const formData = new FormData();
+      formData.append("image", file);
+      const res = await axios.post(
+        api.find((e) => e.pages === "Thêm khóa học").api["upload"],
+        formData
+      );
+      tmpCourse.lessons[index].video = res.data.data;
+      setCourse(tmpCourse);
+    } catch (error) {
+      Swal.fire(
+        "Error",
+        "Something happened, check infomations and try again, glhf!",
+        "error"
+      );
+    }
+  };
+
   // Submit
   let axiosConfig = {
     headers: {
@@ -252,13 +273,20 @@ const Content = (props) => {
                 />
               </Grid>
               <Grid item xs={12}>
-                <TextField
+                {/* <TextField
                   fullWidth
                   label="Lesson video uri"
                   variant="filled"
                   name="video"
                   onChange={(e) => {
                     handleChangeLesson(e, index);
+                  }}
+                /> */}
+                <input
+                  type="file"
+                  id="video"
+                  onChange={(e) => {
+                    handleChangeFile(e, index);
                   }}
                 />
               </Grid>
