@@ -197,7 +197,7 @@ const Analytics = () => {
         <div className="col-6">
           <div className="card">
             <div className="card_heder">
-              <h3>Categories</h3>
+              <h3>Analystics</h3>
             </div>
             <Chart
               options={dataBar.options}
