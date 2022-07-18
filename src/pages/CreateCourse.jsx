@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import api from "../assets/JsonData/api.json";
 import { BarWave } from "react-cssfx-loading/lib";
 import "../assets/css/user.css";
@@ -72,6 +72,7 @@ const Content = (props) => {
     },
   });
   const history = useHistory();
+  const courseImageRef = useRef("");
 
   const addLesson = () => {
     const tmpLessons = [...course.lessons];
@@ -155,6 +156,31 @@ const Content = (props) => {
     }
   };
 
+  const handleChangeCourseImage = async (event) => {
+    const tmpCourse = { ...course };
+    try {
+      const file = event.target.files[0];
+      const formData = new FormData();
+      formData.append("image", file);
+      const res = await axios.post(
+        api.find((e) => e.pages === "Thêm khóa học").api["upload"],
+        formData
+      );
+      tmpCourse.image = res.data.data;
+      setCourse(tmpCourse);
+    } catch (error) {
+      Swal.fire(
+        "Error",
+        "Something happened, check infomations and try again, glhf!",
+        "error"
+      );
+    }
+  };
+
+  const showChooseFileDialog = () => {
+    courseImageRef.current.click();
+  };
+
   // Submit
   let axiosConfig = {
     headers: {
@@ -228,12 +254,21 @@ const Content = (props) => {
             </FormControl>
           </Grid>
           <Grid item xs={12}>
-            <TextField
-              fullWidth
-              label="Course image uri"
-              variant="filled"
+            <Button
+              variant="contained"
+              size="large"
+              onClick={showChooseFileDialog}
+            >
+              Choose image
+            </Button>
+            <b style={{paddingLeft: "10px"}}>{"..." + course.image.split(/(\\|\/)/g).pop().slice(-20)}</b>
+            <input
+              hidden
+              type="file"
               name="image"
-              onChange={handleChange}
+              accept="image/*"
+              onChange={handleChangeCourseImage}
+              ref={courseImageRef}
             />
           </Grid>
         </Grid>
@@ -273,18 +308,10 @@ const Content = (props) => {
                 />
               </Grid>
               <Grid item xs={12}>
-                {/* <TextField
-                  fullWidth
-                  label="Lesson video uri"
-                  variant="filled"
-                  name="video"
-                  onChange={(e) => {
-                    handleChangeLesson(e, index);
-                  }}
-                /> */}
                 <input
                   type="file"
                   id="video"
+                  accept=".mp4"
                   onChange={(e) => {
                     handleChangeFile(e, index);
                   }}

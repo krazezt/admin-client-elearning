@@ -1,4 +1,3 @@
-import { Button } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import Chart from "react-apexcharts";
 import { useSelector } from "react-redux";
@@ -27,78 +26,6 @@ const chartOptions = {
 
 const Analytics = () => {
   const COURSE_NAME_LENGHT = 20;
-  const dataTest = [
-    {
-      count: 1,
-      averageAchievement: null,
-      minAchievement: null,
-      maxAchievement: null,
-      course: "Test Course 2",
-    },
-    {
-      count: 1,
-      averageAchievement: null,
-      minAchievement: null,
-      maxAchievement: null,
-      course: "react course",
-    },
-    {
-      count: 2,
-      averageAchievement: 3.5,
-      minAchievement: 2,
-      maxAchievement: 5,
-      course: "Python course 2",
-    },
-    {
-      count: 1,
-      averageAchievement: null,
-      minAchievement: null,
-      maxAchievement: null,
-      course: "Test Course",
-    },
-    {
-      count: 1,
-      averageAchievement: null,
-      minAchievement: null,
-      maxAchievement: null,
-      course: "React extremely godlike course!",
-    },
-    {
-      count: 1,
-      averageAchievement: null,
-      minAchievement: null,
-      maxAchievement: null,
-      course: "python course",
-    },
-    {
-      count: 3,
-      averageAchievement: 4.333333333333333,
-      minAchievement: 1,
-      maxAchievement: 7,
-      course: "react course",
-    },
-    {
-      count: 1,
-      averageAchievement: null,
-      minAchievement: null,
-      maxAchievement: null,
-      course: "Tran Duc Quan",
-    },
-    {
-      count: 1,
-      averageAchievement: null,
-      minAchievement: null,
-      maxAchievement: null,
-      course: "React for HATERS !!!",
-    },
-    {
-      count: 1,
-      averageAchievement: null,
-      minAchievement: null,
-      maxAchievement: null,
-      course: "react course",
-    },
-  ];
 
   const [dashboard, setDashboard] = useState([
     {
@@ -143,7 +70,7 @@ const Analytics = () => {
   }, []);
 
   const makeData = (pureDataArr) => {
-    pureDataArr.sort((a, b) => b.count - a.count);
+    pureDataArr = pureDataArr.sort((a, b) => b.count - a.count).slice(0, 7);
     const result = [
       {
         name: "Max Achievement",
@@ -207,10 +134,9 @@ const Analytics = () => {
                       }
                 }
                 series={dashboard}
-                type="line"
+                type="bar"
                 height="100%"
               />
-              <Button onClick={() => makeData(dataTest)}>ABC</Button>
             </div>
           </div>
         </div>
