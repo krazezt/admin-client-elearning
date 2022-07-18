@@ -33,7 +33,7 @@ const Dashboard = () => {
         Authorization: `Bearer ${localStorage.getItem("token-admin")}`,
       },
       params: {
-        limit: 10,
+        limit: 20,
         page: 1,
       },
     };
