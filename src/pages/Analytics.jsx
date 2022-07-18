@@ -47,6 +47,28 @@ const Analytics = () => {
   ]);
 
   const [xAxis, setXAxis] = useState([]);
+  const [dataDonut, setDataDonut] = useState({
+    options: {
+      labels: [],
+    },
+    series: [],
+  });
+  const [dataBar, setDataBar] = useState({
+    options: {
+      chart: {
+        id: "basic-bar",
+      },
+      xaxis: {
+        categories: [],
+      },
+    },
+    series: [
+      {
+        name: "",
+        data: [],
+      },
+    ],
+  });
 
   useEffect(() => {
     let axiosConfig = {
@@ -63,7 +85,13 @@ const Analytics = () => {
         axiosConfig
       );
 
+      const res2 = await axios.get(
+        api.find((e) => e.pages === "Tổng quan").api["get-chart"],
+        axiosConfig
+      );
+
       makeData(res.data.result);
+      makeData2(res2.data.result);
     };
 
     getData();
@@ -107,10 +135,79 @@ const Analytics = () => {
     setDashboard([...result]);
   };
 
+  const makeData2 = (pureData) => {
+    const pureDataArr = pureData.chartInfo;
+    const tmpSeries = [];
+    const tmpLabels = [];
+
+    for (let i = 0; i < pureDataArr.length; i++) {
+      tmpSeries.push(pureDataArr[i].count);
+      tmpLabels.push(pureDataArr[i].category);
+    }
+
+    const tmpDataBar = {
+      options: {
+        chart: {
+          id: "basic-bar",
+        },
+        xaxis: {
+          categories: [],
+        },
+      },
+      series: [],
+    };
+
+    tmpDataBar.options.xaxis.categories.push("Users");
+    tmpDataBar.options.xaxis.categories.push("Courses");
+    tmpDataBar.options.xaxis.categories.push("Attdendances");
+    tmpDataBar.options.xaxis.categories.push("Categories");
+
+    tmpDataBar.series.push({
+      name: "",
+      data: [
+        pureData.countUser,
+        pureData.countCourse,
+        pureData.countAttendance,
+        pureData.countCategory,
+      ],
+    });
+
+    setDataBar(tmpDataBar);
+    setDataDonut({ options: { labels: tmpLabels }, series: tmpSeries });
+  };
+
   const themeReducer = useSelector((state) => state.ThemeReducer.mode);
 
   return (
     <div className="analyics-component">
+      <div className="row">
+        <div className="col-6">
+          <div className="card">
+            <div className="card_heder">
+              <h3>Categories</h3>
+            </div>
+            <Chart
+              options={dataDonut.options}
+              series={dataDonut.series}
+              type="donut"
+              width="380"
+            />
+          </div>
+        </div>
+        <div className="col-6">
+          <div className="card">
+            <div className="card_heder">
+              <h3>Categories</h3>
+            </div>
+            <Chart
+              options={dataBar.options}
+              series={dataBar.series}
+              type="bar"
+              height="235"
+            />
+          </div>
+        </div>
+      </div>
       <div className="row">
         <div className="col-12">
           <div className="card  char-dashboard-top">
