@@ -55,8 +55,7 @@
       "get-infor_lession": "",
       "update-lession": "",
 
-      "upload-image": "https://api.cloudinary.com/v1_1/drvrg0ixi/image/upload",
-      "upload-video": "https://api.cloudinary.com/v1_1/drvrg0ixi/video/upload"
+      "upload": "https://api.metahub.market/api/uploads"
     }
   },
   {
