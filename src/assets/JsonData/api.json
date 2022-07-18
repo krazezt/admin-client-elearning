@@ -5,7 +5,8 @@
       "get-counter": "http://127.0.0.1:8000/api/admin/general",
       "get-chart": "http://127.0.0.1:8000/api/admin/chartData",
       "get-top_teacher": "http://127.0.0.1:8000/api/admin/topTeacher",
-      "get-course": "http://127.0.0.1:8000/api/admin/getPendingCourses"
+      "get-course": "http://127.0.0.1:8000/api/admin/getPendingCourses",
+      "get-analystics": "https://programming-course-server.herokuapp.com/v1/dashboard/courseStatistics"
     }
   },
   {
