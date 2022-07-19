@@ -474,7 +474,7 @@ const Content = (props) => {
         <Grid item xs={8} />
         <Grid item xs={4}>
           <Button size="large" variant="contained" onClick={submit}>
-            提出
+            編集
           </Button>
         </Grid>
       </Grid>
