@@ -202,21 +202,19 @@ const Content = (props) => {
       );
 
       if (res.data.code === 200)
-        Swal.fire(
-          "Done",
-          "Course has been updated successfully",
-          "success"
-        ).then(() => history.push("/"));
+        Swal.fire("完成", "コースを編集しました", "success").then(() =>
+          history.push("/")
+        );
       else
         Swal.fire(
-          "Error",
-          "Something happened, check infomations and try again, glhf!",
+          "エラー",
+          "エラーが発生しました。再度お試しください。",
           "error"
         );
     } catch (error) {
       Swal.fire(
-        "Error",
-        "Something happened, check infomations and try again, glhf!",
+        "エラー",
+        "エラーが発生しました。再度お試しください。",
         "error"
       );
     }
@@ -229,7 +227,7 @@ const Content = (props) => {
           <Grid item xs={8}>
             <TextField
               fullWidth
-              label="Course Name"
+              label="コース名"
               variant="filled"
               name="name"
               onChange={handleChange}
@@ -238,7 +236,7 @@ const Content = (props) => {
           </Grid>
           <Grid item xs={4}>
             <FormControl fullWidth>
-              <InputLabel id="select-category-label">Category</InputLabel>
+              <InputLabel id="select-category-label">カテゴリー</InputLabel>
               <Select
                 variant="filled"
                 labelId="select-category-label"
@@ -262,7 +260,7 @@ const Content = (props) => {
               size="large"
               onClick={showChooseFileDialog}
             >
-              Choose image
+              写真選び
             </Button>
             <b style={{ paddingLeft: "10px" }}>
               {"..." +
@@ -285,7 +283,7 @@ const Content = (props) => {
           <TextField
             fullWidth
             multiline
-            label="Course description"
+            label="コースの説明"
             variant="filled"
             rows={5}
             name="description"
@@ -295,12 +293,12 @@ const Content = (props) => {
         </Grid>
         <Grid item xs={10}>
           <Typography variant="h4" align="left">
-            Lessons
+            レッスン
           </Typography>
         </Grid>
         <Grid item xs={2}>
           <Button variant="contained" onClick={addLesson}>
-            Add lesson
+            レッスン追加
           </Button>
         </Grid>
         {course.lessons.map((item, index) => (
@@ -309,7 +307,7 @@ const Content = (props) => {
               <Grid item xs={12}>
                 <TextField
                   fullWidth
-                  label="Lesson Name"
+                  label="レッスン名"
                   variant="filled"
                   name="name"
                   onChange={(e) => {
@@ -333,7 +331,7 @@ const Content = (props) => {
               <TextField
                 fullWidth
                 multiline
-                label="Lesson description"
+                label="レッスンの説明"
                 variant="filled"
                 rows={5}
                 name="description"
@@ -347,18 +345,18 @@ const Content = (props) => {
         ))}
         <Grid item xs={10}>
           <Typography variant="h4" align="left">
-            Quiz
+            クイズ
           </Typography>
         </Grid>
         <Grid item xs={2}>
           <Button variant="contained" onClick={addQuiz}>
-            Add question
+            クイズ追加
           </Button>
         </Grid>
         <Grid item xs={4}>
           <TextField
             fullWidth
-            label="Quiz title"
+            label="クイズタイトル"
             variant="filled"
             name="title"
             onChange={handleChangeQuizTitle}
@@ -371,7 +369,7 @@ const Content = (props) => {
               <TextField
                 fullWidth
                 multiline
-                label="Type your question here..."
+                label="質問"
                 variant="filled"
                 rows={2}
                 name="question"
@@ -401,7 +399,7 @@ const Content = (props) => {
                     <Grid item xs={11}>
                       <TextField
                         fullWidth
-                        label="Quiz title"
+                        label="答えA"
                         variant="filled"
                         name="A"
                         onChange={(e) => {
@@ -420,7 +418,7 @@ const Content = (props) => {
                     <Grid item xs={11}>
                       <TextField
                         fullWidth
-                        label="Quiz title"
+                        label="答えB"
                         variant="filled"
                         name="B"
                         onChange={(e) => {
@@ -439,7 +437,7 @@ const Content = (props) => {
                     <Grid item xs={11}>
                       <TextField
                         fullWidth
-                        label="Quiz title"
+                        label="答えC"
                         variant="filled"
                         name="C"
                         onChange={(e) => {
@@ -458,7 +456,7 @@ const Content = (props) => {
                     <Grid item xs={11}>
                       <TextField
                         fullWidth
-                        label="Quiz title"
+                        label="答えD"
                         variant="filled"
                         name="D"
                         onChange={(e) => {
@@ -476,7 +474,7 @@ const Content = (props) => {
         <Grid item xs={8} />
         <Grid item xs={4}>
           <Button size="large" variant="contained" onClick={submit}>
-            Submit
+            提出
           </Button>
         </Grid>
       </Grid>

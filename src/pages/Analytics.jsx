@@ -29,19 +29,19 @@ const Analytics = () => {
 
   const [dashboard, setDashboard] = useState([
     {
-      name: "Max Achievement",
+      name: "最高成績",
       data: [0, 0, 0, 0, 0, 0, 0],
     },
     {
-      name: "Average Achievement",
+      name: "平均成度",
       data: [0, 0, 0, 0, 0, 0, 0],
     },
     {
-      name: "Min Achievement",
+      name: "最低成績",
       data: [0, 0, 0, 0, 0, 0, 0],
     },
     {
-      name: "Count",
+      name: "学習者数",
       data: [0, 0, 0, 0, 0, 0, 0],
     },
   ]);
@@ -101,19 +101,19 @@ const Analytics = () => {
     pureDataArr = pureDataArr.sort((a, b) => b.count - a.count).slice(0, 7);
     const result = [
       {
-        name: "Max Achievement",
+        name: "最高成績",
         data: [],
       },
       {
-        name: "Average Achievement",
+        name: "平均成度",
         data: [],
       },
       {
-        name: "Min Achievement",
+        name: "最低成績",
         data: [],
       },
       {
-        name: "Count",
+        name: "学習者数",
         data: [],
       },
     ];
@@ -157,10 +157,10 @@ const Analytics = () => {
       series: [],
     };
 
-    tmpDataBar.options.xaxis.categories.push("Users");
-    tmpDataBar.options.xaxis.categories.push("Courses");
-    tmpDataBar.options.xaxis.categories.push("Attdendances");
-    tmpDataBar.options.xaxis.categories.push("Categories");
+    tmpDataBar.options.xaxis.categories.push("ユーザ数");
+    tmpDataBar.options.xaxis.categories.push("コース数");
+    tmpDataBar.options.xaxis.categories.push("登録数");
+    tmpDataBar.options.xaxis.categories.push("カテゴリー数");
 
     tmpDataBar.series.push({
       name: "",
@@ -184,7 +184,7 @@ const Analytics = () => {
         <div className="col-6">
           <div className="card">
             <div className="card_heder">
-              <h3>Categories</h3>
+              <h3>カテゴリーによりコース数</h3>
             </div>
             <Chart
               options={dataDonut.options}
@@ -197,7 +197,7 @@ const Analytics = () => {
         <div className="col-6">
           <div className="card">
             <div className="card_heder">
-              <h3>Analystics</h3>
+              <h3>分析</h3>
             </div>
             <Chart
               options={dataBar.options}
@@ -212,7 +212,7 @@ const Analytics = () => {
         <div className="col-12">
           <div className="card  char-dashboard-top">
             <div className="card_heder">
-              <h3>Tổng quan</h3>
+              <h3>概要</h3>
             </div>
             <div className="card_body char-analytics-top">
               <Chart

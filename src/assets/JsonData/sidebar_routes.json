@@ -1,21 +1,21 @@
 [
     {
-        "display_name": "Courses",
+        "display_name": "コース一覧",
         "route": "/",
         "icon": "bx bx-category-alt"
     },
     {
-        "display_name": "Add Course",
+        "display_name": "コース追加",
         "route": "/create-course",
         "icon": "bx bx-user-pin"
     },
     {
-        "display_name": "Manage Category",
+        "display_name": "カテゴリー管理",
         "route": "/category-management",
         "icon": "bx bx-package"
     },
     {
-        "display_name": "Analystics",
+        "display_name": "システム分析",
         "route": "/analytics",
         "icon": "bx bx-bar-chart-alt"
     }

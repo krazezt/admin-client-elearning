@@ -11,9 +11,9 @@ export const Login = () => {
   const [account, setAccount] = useState(new Account());
   const [status, setStatus] = useState(1);
   const handleChange = (e) => {
-		e.persist();
-		setAccount({ ...account, [e.target.name]: e.target.value });
-	};
+    e.persist();
+    setAccount({ ...account, [e.target.name]: e.target.value });
+  };
 
   useEffect(() => {
     checkToken().then((res) => {
@@ -45,10 +45,10 @@ export const Login = () => {
         <div className="center">
           <div className="header">
             <div className={`login ${status === 1 ? "active" : ""}`}>
-              <button onClick={() => setStatus(1)}>LOGIN</button>
+              <button onClick={() => setStatus(1)}>ログイン</button>
             </div>
             <div className={`reset-pass ${status === 2 ? "active" : ""}`}>
-              <button onClick={() => setStatus(2)}>RESET PASS</button>
+              <button onClick={() => setStatus(2)}>パスワード編集</button>
             </div>
           </div>
           <div className="body">
@@ -56,7 +56,7 @@ export const Login = () => {
               <i className="bx bx-user-circle"></i>
               <input
                 type="text"
-                placeholder="Account"
+                placeholder="アカウント"
                 name="email"
                 value={account.account}
                 onChange={(e) => handleChange(e)}
@@ -69,7 +69,7 @@ export const Login = () => {
               ></i>
               <input
                 type={show ? "text" : "password"}
-                placeholder="Password"
+                placeholder="パスワード"
                 name="password"
                 value={account.password}
                 onChange={(e) => handleChange(e)}
@@ -82,7 +82,7 @@ export const Login = () => {
                 <i className="bx bxs-low-vision"></i>
                 <input
                   type="password"
-                  placeholder="Password"
+                  placeholder="パスワード"
                   name="resetPass"
                   value={account.resetPass}
                   onChange={(e) => handleChange(e)}
@@ -90,7 +90,7 @@ export const Login = () => {
               </div>
             )}
             <button onClick={status === 1 ? login : resetPass}>
-              {status === 1 ? "Login" : "Reset Pass"}
+              {status === 1 ? "ログイン" : "パスワード編集"}
             </button>
           </div>
         </div>

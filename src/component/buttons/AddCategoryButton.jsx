@@ -47,23 +47,23 @@ export default function AddCategoryButton() {
         axiosConfig
       );
 
-      handleClose()
+      handleClose();
       if (res.data.code === 200)
         Swal.fire(
-          "Done",
-          "Category has been created successfully!",
+          "完成",
+          "カテゴリーを追加しました",
           "success"
         ).then(() => window.location.reload());
       else
         Swal.fire(
-          "Error",
-          "Something happened, check infomations and try again, glhf!",
+          "エラー",
+          "エラーが発生しました。再度お試しください。",
           "error"
         );
     } catch (error) {
       Swal.fire(
-        "Error",
-        "Something happened, check infomations and try again, glhf!",
+        "エラー",
+        "エラーが発生しました。再度お試しください。",
         "error"
       );
     }
@@ -83,21 +83,21 @@ export default function AddCategoryButton() {
         <Fade in={open}>
           <Box sx={modalStyle}>
             <Typography textAlign="center" variant="h6">
-              New category
+              カテゴリー追加
             </Typography>
             <br />
             <TextField
               fullWidth
-              label="New category name..."
+              label="カテゴリー名"
               variant="standard"
               onChange={(e) => setCategoryName(e.target.value)}
             />
             <Box width="100%" pt={2} textAlign="right">
               <Button variant="outlined" onClick={handleClose}>
-                Cancel
+                キャンセル
               </Button>{" "}
               <Button variant="contained" onClick={submit}>
-                Confirm
+                登録
               </Button>
             </Box>
           </Box>
@@ -109,7 +109,7 @@ export default function AddCategoryButton() {
         startIcon={<LibraryAdd />}
         onClick={handleOpen}
       >
-        Add
+        追加
       </Button>
     </>
   );

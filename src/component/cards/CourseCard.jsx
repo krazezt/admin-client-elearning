@@ -67,7 +67,7 @@ export default function CourseCard(props) {
             <Grid container item xs={7} pr={3}>
               <Grid item xs={12}>
                 <Typography align="center" variant="h5">
-                  Lessons
+                  レッスン
                 </Typography>
                 {course.lessons.map((item, index) => (
                   <Grid item xs={12} key={index} pt={3}>
@@ -105,7 +105,7 @@ export default function CourseCard(props) {
               setOpen(true);
             }}
           >
-            View
+            詳細
           </Button>
         </CardActions>
       </Card>

@@ -56,14 +56,14 @@ const headCells = [
     id: "categoryName",
     numeric: false,
     disablePadding: true,
-    label: "Category Name",
+    label: "カテゴリー名",
     sortable: true,
   },
   {
     id: "categoryId",
     numeric: false,
     disablePadding: true,
-    label: "Category ID",
+    label: "カテゴリーID",
     sortable: true,
   },
   {
@@ -272,7 +272,7 @@ const EnhancedTableToolbar = (props) => {
             variant="subtitle1"
             component="div"
           >
-            {numSelected} selected
+            {numSelected} 選択中
           </Typography>
         ) : (
           <Typography
@@ -281,7 +281,7 @@ const EnhancedTableToolbar = (props) => {
             id="tableTitle"
             component="div"
           >
-            Categories
+            各カテゴリー
           </Typography>
         )}
 
@@ -395,20 +395,20 @@ export default function CategoryTable(props) {
 
       if (res.data.code === 200)
         Swal.fire(
-          "Done",
-          "Category has been updated successfully",
+          "完成",
+          "カテゴリーを編集しました！",
           "success"
         ).then(() => window.location.reload());
       else
         Swal.fire(
-          "Error",
-          "Something happened, check infomations and try again, glhf!",
+          "エラー",
+          "エラーが発生しました。再度お試しください。",
           "error"
         );
     } catch (error) {
       Swal.fire(
-        "Error",
-        "Something happened, check infomations and try again, glhf!",
+        "エラー",
+        "エラーが発生しました。再度お試しください。",
         "error"
       );
     }
@@ -434,12 +434,12 @@ export default function CategoryTable(props) {
         <Fade in={open}>
           <Box sx={modalStyle}>
             <Typography textAlign="center" variant="h6">
-              Edit category
+              カテゴリーの編集
             </Typography>
             <br />
             <TextField
               fullWidth
-              label="New category name..."
+              label="カテゴリー名"
               variant="standard"
               onChange={(e) =>
                 setEdittingCategory({
@@ -450,10 +450,10 @@ export default function CategoryTable(props) {
             />
             <Box width="100%" pt={2} textAlign="right">
               <Button variant="outlined" onClick={handleClose}>
-                Cancel
+                キャンセル
               </Button>{" "}
               <Button variant="contained" onClick={submitEdit}>
-                Confirm
+                編集
               </Button>
             </Box>
           </Box>
