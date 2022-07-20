@@ -10,7 +10,7 @@
   position: relative;
   height: 50px;
   background-color: var(--main-bg);
-  display: flex;
+  display: none;
   align-items: center;
   box-shadow: var(--box-shadow);
   border-radius: var(--border-radius);

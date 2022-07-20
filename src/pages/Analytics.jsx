@@ -1,4 +1,3 @@
-import { Button } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import Chart from "react-apexcharts";
 import { useSelector } from "react-redux";
@@ -27,99 +26,49 @@ const chartOptions = {
 
 const Analytics = () => {
   const COURSE_NAME_LENGHT = 20;
-  const dataTest = [
-    {
-      count: 1,
-      averageAchievement: null,
-      minAchievement: null,
-      maxAchievement: null,
-      course: "Test Course 2",
-    },
-    {
-      count: 1,
-      averageAchievement: null,
-      minAchievement: null,
-      maxAchievement: null,
-      course: "react course",
-    },
-    {
-      count: 2,
-      averageAchievement: 3.5,
-      minAchievement: 2,
-      maxAchievement: 5,
-      course: "Python course 2",
-    },
-    {
-      count: 1,
-      averageAchievement: null,
-      minAchievement: null,
-      maxAchievement: null,
-      course: "Test Course",
-    },
-    {
-      count: 1,
-      averageAchievement: null,
-      minAchievement: null,
-      maxAchievement: null,
-      course: "React extremely godlike course!",
-    },
-    {
-      count: 1,
-      averageAchievement: null,
-      minAchievement: null,
-      maxAchievement: null,
-      course: "python course",
-    },
-    {
-      count: 3,
-      averageAchievement: 4.333333333333333,
-      minAchievement: 1,
-      maxAchievement: 7,
-      course: "react course",
-    },
-    {
-      count: 1,
-      averageAchievement: null,
-      minAchievement: null,
-      maxAchievement: null,
-      course: "Tran Duc Quan",
-    },
-    {
-      count: 1,
-      averageAchievement: null,
-      minAchievement: null,
-      maxAchievement: null,
-      course: "React for HATERS !!!",
-    },
-    {
-      count: 1,
-      averageAchievement: null,
-      minAchievement: null,
-      maxAchievement: null,
-      course: "react course",
-    },
-  ];
 
   const [dashboard, setDashboard] = useState([
     {
-      name: "Max Achievement",
+      name: "最高成績",
       data: [0, 0, 0, 0, 0, 0, 0],
     },
     {
-      name: "Average Achievement",
+      name: "平均成度",
       data: [0, 0, 0, 0, 0, 0, 0],
     },
     {
-      name: "Min Achievement",
+      name: "最低成績",
       data: [0, 0, 0, 0, 0, 0, 0],
     },
     {
-      name: "Count",
+      name: "学習者数",
       data: [0, 0, 0, 0, 0, 0, 0],
     },
   ]);
 
   const [xAxis, setXAxis] = useState([]);
+  const [dataDonut, setDataDonut] = useState({
+    options: {
+      labels: [],
+    },
+    series: [],
+  });
+  const [dataBar, setDataBar] = useState({
+    options: {
+      chart: {
+        id: "basic-bar",
+      },
+      xaxis: {
+        categories: [],
+      },
+    },
+    series: [
+      {
+        name: "",
+        data: [],
+      },
+    ],
+  });
 
   useEffect(() => {
     let axiosConfig = {
@@ -136,29 +85,35 @@ const Analytics = () => {
         axiosConfig
       );
 
+      const res2 = await axios.get(
+        api.find((e) => e.pages === "Tổng quan").api["get-chart"],
+        axiosConfig
+      );
+
       makeData(res.data.result);
+      makeData2(res2.data.result);
     };
 
     getData();
   }, []);
 
   const makeData = (pureDataArr) => {
-    pureDataArr.sort((a, b) => b.count - a.count);
+    pureDataArr = pureDataArr.sort((a, b) => b.count - a.count).slice(0, 7);
     const result = [
       {
-        name: "Max Achievement",
+        name: "最高成績",
         data: [],
       },
       {
-        name: "Average Achievement",
+        name: "平均成度",
         data: [],
       },
       {
-        name: "Min Achievement",
+        name: "最低成績",
         data: [],
       },
       {
-        name: "Count",
+        name: "学習者数",
         data: [],
       },
     ];
@@ -180,15 +135,84 @@ const Analytics = () => {
     setDashboard([...result]);
   };
 
+  const makeData2 = (pureData) => {
+    const pureDataArr = pureData.chartInfo;
+    const tmpSeries = [];
+    const tmpLabels = [];
+
+    for (let i = 0; i < pureDataArr.length; i++) {
+      tmpSeries.push(pureDataArr[i].count);
+      tmpLabels.push(pureDataArr[i].category);
+    }
+
+    const tmpDataBar = {
+      options: {
+        chart: {
+          id: "basic-bar",
+        },
+        xaxis: {
+          categories: [],
+        },
+      },
+      series: [],
+    };
+
+    tmpDataBar.options.xaxis.categories.push("ユーザ数");
+    tmpDataBar.options.xaxis.categories.push("コース数");
+    tmpDataBar.options.xaxis.categories.push("登録数");
+    tmpDataBar.options.xaxis.categories.push("カテゴリー数");
+
+    tmpDataBar.series.push({
+      name: "",
+      data: [
+        pureData.countUser,
+        pureData.countCourse,
+        pureData.countAttendance,
+        pureData.countCategory,
+      ],
+    });
+
+    setDataBar(tmpDataBar);
+    setDataDonut({ options: { labels: tmpLabels }, series: tmpSeries });
+  };
+
   const themeReducer = useSelector((state) => state.ThemeReducer.mode);
 
   return (
     <div className="analyics-component">
       <div className="row">
+        <div className="col-6">
+          <div className="card">
+            <div className="card_heder">
+              <h3>カテゴリーによりコース数</h3>
+            </div>
+            <Chart
+              options={dataDonut.options}
+              series={dataDonut.series}
+              type="donut"
+              width="380"
+            />
+          </div>
+        </div>
+        <div className="col-6">
+          <div className="card">
+            <div className="card_heder">
+              <h3>分析</h3>
+            </div>
+            <Chart
+              options={dataBar.options}
+              series={dataBar.series}
+              type="bar"
+              height="235"
+            />
+          </div>
+        </div>
+      </div>
+      <div className="row">
         <div className="col-12">
           <div className="card  char-dashboard-top">
             <div className="card_heder">
-              <h3>Tổng quan</h3>
+              <h3>概要</h3>
             </div>
             <div className="card_body char-analytics-top">
               <Chart
@@ -207,10 +231,9 @@ const Analytics = () => {
                       }
                 }
                 series={dashboard}
-                type="line"
+                type="bar"
                 height="100%"
               />
-              <Button onClick={() => makeData(dataTest)}>ABC</Button>
             </div>
           </div>
         </div>

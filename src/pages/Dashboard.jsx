@@ -33,8 +33,7 @@ const Dashboard = () => {
         Authorization: `Bearer ${localStorage.getItem("token-admin")}`,
       },
       params: {
-        limit: 10,
-        page: 1,
+        sortBy: "createdAt:desc",
       },
     };
 
@@ -95,18 +94,18 @@ const Dashboard = () => {
   return (
     <div>
       <div className="row">
-        <div style={{ width: "770px", padding: "15px" }}>
+        <div style={{ width: "800px", padding: "15px" }}>
           <div className="card">
             <div className="card_body">
               <FormControl variant="standard" sx={{ m: 3, minWidth: 120 }}>
-                <InputLabel id="category-label">Category</InputLabel>
+                <InputLabel id="category-label">カテゴリー</InputLabel>
                 <Select
                   labelId="category-label"
                   name="categoryId"
                   onChange={handleChange}
                 >
                   <MenuItem value="" key={-1}>
-                    All
+                    全て
                   </MenuItem>
                   {categories.map((item, index) => (
                     <MenuItem value={item.id} key={index}>
@@ -116,15 +115,15 @@ const Dashboard = () => {
                 </Select>
               </FormControl>
               <FormControl variant="standard" sx={{ m: 3, minWidth: 120 }}>
-                <InputLabel id="sortby-label">Sort By</InputLabel>
+                <InputLabel id="sortby-label">並び替え</InputLabel>
                 <Select
                   labelId="sortby-label"
                   name="sortBy"
                   onChange={handleChange}
                 >
-                  <MenuItem value="">None</MenuItem>
-                  <MenuItem value="name">Course Name</MenuItem>
-                  <MenuItem value="createdAt">Date Created</MenuItem>
+                  <MenuItem value="">なし</MenuItem>
+                  <MenuItem value="name">コース名</MenuItem>
+                  <MenuItem value="createdAt">作成日時</MenuItem>
                 </Select>
               </FormControl>
               <FormControl variant="standard" sx={{ m: 3, minWidth: 120 }}>
@@ -147,7 +146,7 @@ const Dashboard = () => {
                   startIcon={<FilterAltIcon />}
                   onClick={submitFilter}
                 >
-                  Filter
+                  フィルター
                 </Button>
               </FormControl>
             </div>
