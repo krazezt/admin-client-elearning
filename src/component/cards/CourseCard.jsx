@@ -95,7 +95,7 @@ export default function CourseCard(props) {
             {course.name}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {course.description}
+            {course.description.slice(0, 80) + "..."}
           </Typography>
         </CardContent>
         <CardActions>
