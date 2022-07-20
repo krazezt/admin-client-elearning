@@ -61,7 +61,7 @@ export default function CourseCard(props) {
                 {course.name}
               </Typography>
               <Typography align="center" variant="h6" component="h2">
-                {course.description.substring(0, 80) + "..."}
+                {course.description.substring(0, 60) + "..."}
               </Typography>
             </Grid>
             <Grid container item xs={7} pr={3}>
